@@ -1,0 +1,65 @@
+# =====================================
+# 🌸 SPRING BOOT / MAVEN BUILD FILES
+# =====================================
+target/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven Wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# =====================================
+# 🌸 IDE SPECIFIC FILES
+# =====================================
+
+# Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+
+# =====================================
+# 🌸 OPERATING SYSTEM FILES
+# =====================================
+.DS_Store
+Thumbs.db
+
+# =====================================
+# 🌸 LOGS AND TEMPORARY FILES
+# =====================================
+*.log
+*.tmp
+
+# =====================================
+# 🌸 ENVIRONMENT / SECRET CONFIG FILES
+# =====================================
+# Never commit these to GitHub (for security)
+application.properties
+application.yml
+.env
+secrets/

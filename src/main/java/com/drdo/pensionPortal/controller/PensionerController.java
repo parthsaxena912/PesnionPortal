@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pensioners")
-@CrossOrigin(origins = "http://localhost:4200") // Allow Angular frontend
+
 public class PensionerController {
 
     @Autowired

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pension-records")
-@CrossOrigin(origins = "http://localhost:4200")
+
 public class PensionRecordController {
 
     @Autowired

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/insurance")
-@CrossOrigin("*")
+
 public class InsuranceController {
 
     private final InsuranceService service;

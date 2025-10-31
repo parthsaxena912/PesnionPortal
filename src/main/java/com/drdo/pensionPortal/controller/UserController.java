@@ -9,7 +9,7 @@ import com.drdo.pensionPortal.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:4200") // allow Angular frontend
+
 public class UserController {
 
     private final UserService service;

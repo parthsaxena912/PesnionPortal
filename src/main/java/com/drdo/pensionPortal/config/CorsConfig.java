@@ -15,19 +15,13 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ Allow your frontend URLs
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",
-                "https://drdo-pension-portal.vercel.app"
+                "https://dodo-frontendvercel.vercel.app"
         ));
 
-        // ✅ Allow essential headers
         config.setAllowedHeaders(List.of("*"));
-
-        // ✅ Allow HTTP methods
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // ✅ Allow cookies/authorization
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

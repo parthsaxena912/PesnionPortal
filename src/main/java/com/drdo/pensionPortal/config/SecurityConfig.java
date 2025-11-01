@@ -12,13 +12,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // ✅ Enable CORS
-                .cors(cors -> cors.disable()) // We will handle CORS in CorsConfig
+                // ✅ Enable CORS (important!)
+                .cors(cors -> cors.configurationSource(request -> null)) // Let CorsFilter handle everything
 
                 // ✅ Disable CSRF for REST APIs
                 .csrf(csrf -> csrf.disable())
 
-                // ✅ Allow H2 console (optional)
+                // ✅ Allow H2 console
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
                 // ✅ Public endpoints
@@ -34,4 +34,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-

@@ -15,23 +15,33 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ Your frontend origins
+        // ✅ Your allowed frontend URLs
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://dodo-frontendvercel.vercel.app"
         ));
 
-        // ✅ Allow headers
-        config.setAllowedHeaders(List.of("*"));
+        // ✅ Allow required headers for preflight
+        config.setAllowedHeaders(List.of(
+                "Authorization",
+                "Content-Type",
+                "Accept",
+                "Origin"
+        ));
 
-        // ✅ Allow all methods
-        config.setAllowedMethods(List.of("*"));
+        // ✅ Allow required methods for preflight
+        config.setAllowedMethods(List.of(
+                "GET", "POST", "PUT", "DELETE", "OPTIONS"
+        ));
 
-        // ✅ Allow credentials
+        // ✅ Allow cookies / tokens
         config.setAllowCredentials(true);
 
-        // ✅ IMPORTANT — expose headers (needed for JWT)
-        config.setExposedHeaders(List.of("Authorization"));
+        // ✅ Allow all exposed headers
+        config.setExposedHeaders(List.of(
+                "Authorization",
+                "Content-Type"
+        ));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

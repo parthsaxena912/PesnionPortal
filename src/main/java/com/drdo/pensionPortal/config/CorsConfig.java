@@ -14,15 +14,13 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                "http://localhost:4200",
-                                "https://drdo-portal.vercel.app",
-                                "https://drdo-portal.vercel.app/home",
-                                "https://pesnionportal-production.up.railway.app"
-                        )
-                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
+                    .allowedOrigins(
+                        "https://drdo-portal.vercel.app",
+                        "http://localhost:4200"
+                    )
+                    .allowedMethods("*")
+                    .allowedHeaders("*")
+                    .allowCredentials(true);
             }
         };
     }

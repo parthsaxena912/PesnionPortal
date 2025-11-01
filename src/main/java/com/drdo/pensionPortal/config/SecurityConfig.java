@@ -13,19 +13,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(Customizer.withDefaults())  // ✅ Enable CORS (reads from CorsConfig)
-                .csrf(csrf -> csrf.disable())      // ✅ Disable CSRF for REST API
+                .cors(Customizer.withDefaults())      // ✅ Enable CORS
+                .csrf(csrf -> csrf.disable())         // ✅ Disable CSRF
 
-                // ✅ Allow all API endpoints
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().permitAll()
                 )
 
-                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // ✅ H2 console
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .formLogin(login -> login.disable())
-                .httpBasic(httpBasic -> httpBasic.disable());
+                .httpBasic(Customizer.withDefaults()); // ✅ Important
 
         return http.build();
     }

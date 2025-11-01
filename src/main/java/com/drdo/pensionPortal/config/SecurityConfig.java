@@ -2,6 +2,7 @@ package com.drdo.pensionPortal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -12,22 +13,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // ✅ Enable CORS (important!)
-                .cors(cors -> cors.configurationSource(request -> null)) // Let CorsFilter handle everything
+                .cors(Customizer.withDefaults())  // ✅ Enable CORS (reads from CorsConfig)
+                .csrf(csrf -> csrf.disable())      // ✅ Disable CSRF for REST API
 
-                // ✅ Disable CSRF for REST APIs
-                .csrf(csrf -> csrf.disable())
-
-                // ✅ Allow H2 console
-                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-
-                // ✅ Public endpoints
+                // ✅ Allow all API endpoints
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**", "/ws/**", "/topic/**").permitAll()
                         .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().permitAll()
                 )
 
+                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // ✅ H2 console
                 .formLogin(login -> login.disable())
                 .httpBasic(httpBasic -> httpBasic.disable());
 

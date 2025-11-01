@@ -15,25 +15,28 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ Your frontend URLs
+        // ✅ Your frontend origins
         config.setAllowedOrigins(List.of(
                 "http://localhost:4200",
                 "https://dodo-frontendvercel.vercel.app"
         ));
 
-        // ✅ Allow all headers
+        // ✅ Allow headers
         config.setAllowedHeaders(List.of("*"));
 
-        // ✅ Allow all HTTP methods
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        // ✅ Allow all methods
+        config.setAllowedMethods(List.of("*"));
 
-        // ✅ Allow credentials (cookies/tokens)
+        // ✅ Allow credentials
         config.setAllowCredentials(true);
 
-        // ✅ Apply CORS to all paths
+        // ✅ IMPORTANT — expose headers (needed for JWT)
+        config.setExposedHeaders(List.of("Authorization"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
         return new CorsFilter(source);
     }
 }
+
